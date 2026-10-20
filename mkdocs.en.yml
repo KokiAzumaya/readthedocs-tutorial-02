@@ -1,0 +1,5 @@
+INHERIT: mkdocs.base.yml
+site_name: Basic MkDocs Example Project
+docs_dir: docs/en
+theme:
+  locale: en

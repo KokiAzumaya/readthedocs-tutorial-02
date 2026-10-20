@@ -10,9 +10,11 @@ build:
   os: ubuntu-24.04
   tools:
     python: "3.12"
-
-mkdocs:
-  configuration: mkdocs.yml
+  jobs:
+    # $READTHEDOCS_LANGUAGE will be en or ja.
+    build:
+      html:
+        - python -m mkdocs build --clean --config-file mkdocs.$READTHEDOCS_LANGUAGE.yml --site-dir $READTHEDOCS_OUTPUT/html
 
 # Optionally declare the Python requirements required to build your docs
 python:
