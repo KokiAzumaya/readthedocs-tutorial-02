@@ -1,40 +1,31 @@
-Example: Basic MkDocs project for Read the Docs
-===============================================
+Example: Multilingual MkDocs project for Read the Docs
+=====================================================
 
-[![Documentation Status](https://readthedocs.org/projects/example-mkdocs-basic/badge/?version=latest)](https://example-mkdocs-basic.readthedocs.io/en/latest/?badge=latest)
+This project is based on the [basic MkDocs example for Read the Docs](https://github.com/readthedocs-examples/example-mkdocs-basic), extended to publish the documentation in English and Japanese. If you are using Read the Docs for the first time, have a look at the official [Read the Docs Tutorial](https://docs.readthedocs.io/en/stable/tutorial/index.html).
 
-This example shows a basic MkDocs project with Read the Docs. You're encouraged to view it to get inspiration and copy & paste from the files in the source code. If you are using Read the Docs for the first time, have a look at the official [Read the Docs Tutorial](https://docs.readthedocs.io/en/stable/tutorial/index.html).
+📚 `docs/en/` and `docs/ja/`<br>
+The English documentation lives in `docs/en/`, and its Japanese translation lives in `docs/ja/`. All the `*.md` make up sections in the documentation. The Japanese files are written by hand, and must have the same file names and structure as the English ones, so that the language switcher on Read the Docs can move between the same pages.
 
-📚 [docs/](https://github.com/readthedocs-examples/example-mkdocs-basic/blob/main/docs/)<br>
-A basic MkDocs project lives in `docs/`, it was generated using MkDocs defaults. All the `*.md` make up sections in the documentation.
+⚙️ `.readthedocs.yaml`<br>
+Read the Docs Build configuration is stored in `.readthedocs.yaml`. The English and Japanese Read the Docs projects share this file. Each build selects the MkDocs configuration file by `$READTHEDOCS_LANGUAGE`, which is set from the project's language setting (`en` or `ja`).
 
-⚙️ [.readthedocs.yaml](https://github.com/readthedocs-examples/example-mkdocs-basic/blob/main/.readthedocs.yaml)<br>
-Read the Docs Build configuration is stored in `.readthedocs.yaml`.
+⚙️ `mkdocs.base.yml`, `mkdocs.en.yml` and `mkdocs.ja.yml`<br>
+The [MkDocs configuration](https://www.mkdocs.org/user-guide/configuration/) shared by all languages is stored in `mkdocs.base.yml`, including a few extensions for MkDocs and Markdown. `mkdocs.en.yml` and `mkdocs.ja.yml` contain only the language-specific settings, and load `mkdocs.base.yml` with `INHERIT`. Add your own configurations, such as extensions and themes, to `mkdocs.base.yml`. Remember that many extensions and themes require additional Python packages to be installed.
 
-⚙️ [mkdocs.yml](https://github.com/readthedocs-examples/example-mkdocs-basic/blob/main/mkdocs.yml)<br>
-A basic [MkDocs configuration](https://www.mkdocs.org/user-guide/configuration/) is stored here, including a few extensions for MkDocs and Markdown. Add your own configurations here, such as extensions and themes. Remember that many extensions and themes require additional Python packages to be installed.
+📍 `docs/requirements.txt` and `docs/requirements.in`<br>
+Python dependencies are [pinned](https://docs.readthedocs.io/en/latest/guides/reproducible-builds.html) (uses [pip-tools](https://pip-tools.readthedocs.io/en/latest/)) here. Make sure to add your Python dependencies to `requirements.txt` or if you choose [pip-tools](https://pip-tools.readthedocs.io/en/latest/), edit `docs/requirements.in` and remember to run `pip-compile docs/requirements.in`.
 
-📍 [docs/requirements.txt](https://github.com/readthedocs-examples/example-mkdocs-basic/blob/main/docs/requirements.txt) and [docs/requirements.in](https://github.com/readthedocs-examples/example-mkdocs-basic/blob/main/docs/requirements.in)<br>
-Python dependencies are [pinned](https://docs.readthedocs.io/en/latest/guides/reproducible-builds.html) (uses [pip-tools](https://pip-tools.readthedocs.io/en/latest/)) here. Make sure to add your Python dependencies to `requirements.txt` or if you choose [pip-tools](https://pip-tools.readthedocs.io/en/latest/), edit `docs/requirements.in` and remember to run to run `pip-compile docs/requirements.in`.
-
-💡 [docs/api.md](https://github.com/readthedocs-examples/example-mkdocs-basic/blob/main/docs/api.md)<br>
+💡 `docs/en/api.md`<br>
 We add our example Python module `lumache` in order to auto-generate an API reference. To do this, we use the `:::` syntax, you can read more in the [mkdocstrings documentation](https://mkdocstrings.github.io/).
 
-💡 [docs/usage.md](https://github.com/readthedocs-examples/example-mkdocs-basic/blob/main/docs/usage.md)<br>
-We also include some direct links to a function from the API reference, as well as embedding documentation for the example function `lumache.get_random_recipe`. This functionality is also from the [mkdocstrings](https://mkdocstrings.github.io/python/) extension.
+💡 `docs/en/usage.md`<br>
+We also include some direct links to a function from the API reference, as well as embedding documentation for the example function `lumache.get_random_ingredients`. This functionality is also from the [mkdocstrings](https://mkdocstrings.github.io/python/) extension.
 
-💡 [lumache.py](https://github.com/readthedocs-examples/example-mkdocs-basic/blob/main/lumache.py)<br>
-API docs are generated for this example Python module - they use *docstrings* directly in the documentation, notice how this shows up in the rendered documentation. We use the [Sphinx convention](https://pythonhosted.org/an_example_pypi_project/sphinx.html#function-definitions) for docstrings, however you are free to edit `mkdocs.yml` to change this option to `google` or `numpy`.
+💡 `lumache.py`<br>
+API docs are generated for this example Python module - they use *docstrings* directly in the documentation, notice how this shows up in the rendered documentation. We use the [Sphinx convention](https://pythonhosted.org/an_example_pypi_project/sphinx.html#function-definitions) for docstrings, however you are free to edit `mkdocs.base.yml` to change this option to `google` or `numpy`.
 
-🔢 Git tags versioning<br>
-We use a basic versioning mechanism by adding a git tag for every release of the example project. All releases and their version numbers are visible on
-[example-mkdocs-basic.readthedocs.io](https://example-mkdocs-basic.readthedocs.io/en/latest/).
-
-📜 [README.md](https://github.com/readthedocs-examples/example-mkdocs-basic/blob/main/README.md)<br>
-Contents of this `README.md` are visible on Github and included on [the documentation index page](https://example-mkdocs-basic.readthedocs.io/en/latest/) (Don\'t Repeat Yourself).
-
-⁉️ Questions / comments<br>
-If you have questions related to this example, feel free to can ask them as a Github issue [here](https://github.com/readthedocs-examples/example-mkdocs-basic/issues).
+📜 `README.md` and `README.ja.md`<br>
+Contents of `README.md` are visible on GitHub and included on the English documentation index page (`docs/en/index.md`). Its Japanese translation `README.ja.md` is included on the Japanese documentation index page (`docs/ja/index.md`).
 
 
 Example Project usage
@@ -48,8 +39,11 @@ You can build and view this documentation project locally - we recommend that yo
 # Install required Python dependencies (MkDocs etc.)
 pip install -r docs/requirements.txt
 
-# Run the mkdocs development server
-mkdocs serve
+# Run the mkdocs development server (English)
+mkdocs serve -f mkdocs.en.yml
+
+# Run the mkdocs development server (Japanese)
+mkdocs serve -f mkdocs.ja.yml
 ```
 
 Using the example in your own project
@@ -60,11 +54,13 @@ If you are new to Read the Docs, you may want to refer to the [Read the Docs Use
 If you are copying this code in order to get started with your documentation, you need to:
 
 1. place your `docs/` folder alongside your Python project. If you are starting a new project, you can adapt the `pyproject.toml` example configuration.
-1. use your existing project repository or create a new repository on Github, GitLab, Bitbucket or another host supported by Read the Docs.
-1. copy `mkdocs.yml`, `.readthedocs.yaml` and the `docs/` folder into your project.
+1. use your existing project repository or create a new repository on GitHub, GitLab, Bitbucket or another host supported by Read the Docs.
+1. copy `mkdocs.base.yml`, `mkdocs.en.yml`, `mkdocs.ja.yml`, `.readthedocs.yaml` and the `docs/` folder into your project.
 1. customize all the files, replacing example contents.
-1. Rebuild the documenation locally to see that it works.
+1. Rebuild the documentation locally to see that it works.
 1. *Finally*, register your project on Read the Docs, see [Importing Your Documentation](https://docs.readthedocs.io/en/stable/intro/import-guide.html).
+1. Register the same repository once more as a second project, and set its language to Japanese.
+1. In the English project, go to *Settings > Translations* and add the Japanese project as a translation.
 
 
 Read the Docs tutorial

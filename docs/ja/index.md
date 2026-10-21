@@ -1,4 +1,4 @@
-{!README.md!}
+{!README.ja.md!}
 
 # Welcome to Lumache's documentation!
 
