@@ -11,12 +11,10 @@ build:
   tools:
     python: "3.12"
   jobs:
+    # Without the mkdocs: key, RTD does not install requirements automatically.
+    install:
+      - python -m pip install -r docs/requirements.txt
     # $READTHEDOCS_LANGUAGE will be en or ja.
     build:
       html:
         - python -m mkdocs build --clean --config-file mkdocs.$READTHEDOCS_LANGUAGE.yml --site-dir $READTHEDOCS_OUTPUT/html
-
-# Optionally declare the Python requirements required to build your docs
-python:
-   install:
-   - requirements: docs/requirements.txt
